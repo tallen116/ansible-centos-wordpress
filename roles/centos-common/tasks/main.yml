@@ -26,9 +26,17 @@
     enabled: yes
     state: started
 
-- name: Install SCL-PHP72 (PHP 7.2)
+- name: Install scl-php72 (PHP 7.2)
   yum:
     name: rh-php72
+    state: installed
+
+- name: Install PHP 7.2 modules
+  yum:
+    name: >
+      rh-php72-php-fpm, rh-php72-php-gd, rh-php72-php-json,
+      rh-php72-php-mbstring, rh-php72-php-mysqlnd,
+      rh-php72-php-xml, rh-php72-php-xmlrpc, rh-php72-php-opcache
     state: installed
 
 - name: Enable rh-php72
@@ -41,3 +49,20 @@
       #!/bin/bash
       source scl_source enable rh-php72
     mode: 0644
+
+- name: Install scl-mariadb102 (MariaDB 10.2)
+  yum:
+    name: rh-php72
+    state: installed
+
+- name: Enable rh-mariadb102
+  shell: scl enable rh-mariadb102 bash
+
+- name: Enable rh-mariadb102 to be persistent
+  copy:
+    dest: /etc/profile.d/enable-rhmariadb102.sh
+    content: |
+      #!/bin/bash
+      source scl_source enable rh-mariadb102
+    mode: 0644
+
