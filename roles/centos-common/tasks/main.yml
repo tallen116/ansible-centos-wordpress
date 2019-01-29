@@ -1,5 +1,10 @@
 ---
 
+- name: Set SELinux to Permissive
+  selinux:
+    policy: targeted
+    state: permissive
+
 - name: Install Software Collections
   yum:
     name: centos-release-scl
@@ -14,3 +19,25 @@
   yum:
     name: nginx
     state: installed
+
+- name: Enable and Start Nginx
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started
+
+- name: Install SCL-PHP72 (PHP 7.2)
+  yum:
+    name: rh-php72
+    state: installed
+
+- name: Enable rh-php72
+  shell: scl enable rh-php72 bash
+
+- name: Enable rh-php72 to be persistent
+  copy:
+    dest: /etc/profile.d/enable-rhphp72.sh
+    content: |
+      #!/bin/bash
+      source scl_source enable rh-php72
+    mode: 0644
