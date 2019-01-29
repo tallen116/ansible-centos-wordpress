@@ -1,0 +1,16 @@
+---
+
+- name: Install Software Collections
+  yum:
+    name: centos-release-scl
+    state: installed
+
+- name: Install Epel Repository
+  yum:
+    name: epel-release
+    state: installed
+
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: installed
