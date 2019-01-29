@@ -26,29 +26,17 @@
     enabled: yes
     state: started
 
-- name: Install scl-php72 (PHP 7.2)
-  yum:
-    name: rh-php72
-    state: installed
-
-- name: Install PHP 7.2 modules
+- name: Install PHP 7.2 and modules
   yum:
     name: >
-      rh-php72-php-fpm, rh-php72-php-gd, rh-php72-php-json,
+      rh-php72, rh-php72-php-fpm, rh-php72-php-gd, rh-php72-php-json,
       rh-php72-php-mbstring, rh-php72-php-mysqlnd,
       rh-php72-php-xml, rh-php72-php-xmlrpc, rh-php72-php-opcache
     state: installed
+  notify:
+    - enable rh-php72
+    - load rh-php72 script
 
-#- name: Enable rh-php72
-#  shell: scl enable rh-php72 bash
-
-- name: Enable rh-php72 to be persistent
-  copy:
-    dest: /etc/profile.d/enable-rhphp72.sh
-    content: |
-      #!/bin/bash
-      source scl_source enable rh-php72
-    mode: 0644
   notify:
     - enable rh-php72
 
@@ -56,14 +44,7 @@
   yum:
     name: rh-mariadb102
     state: installed
-
-- name: Enable rh-mariadb102 to be persistent
-  copy:
-    dest: /etc/profile.d/enable-rhmariadb102.sh
-    content: |
-      #!/bin/bash
-      source scl_source enable rh-mariadb102
-    mode: 0644
   notify:
     - enable rh-mariadb102
+    - load rh-mariadb102 script
 

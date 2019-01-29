@@ -1,5 +1,21 @@
-- name: enable rh-php72
+- name: load rh-php72 script
   shell: source /etc/profile.d/enable-rhphp72.sh
 
-- name: enable rh-mariadb102
+- name: load rh-mariadb102 script
   shell: source /etc/profile.d/enable-rhmariadb102.sh
+
+- name: enable rh-mariadb102
+  copy:
+    dest: /etc/profile.d/enable-rhmariadb102.sh
+    content: |
+      #!/bin/bash
+      source scl_source enable rh-mariadb102
+    mode: 0644
+
+- name: enable rh-php72
+  copy:
+    dest: /etc/profile.d/enable-rhphp72.sh
+    content: |
+      #!/bin/bash
+      source scl_source enable rh-php72
+    mode: 0644
