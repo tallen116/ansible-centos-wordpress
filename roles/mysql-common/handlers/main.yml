@@ -1,0 +1,10 @@
+- name: enable rh-mariadb102
+  copy:
+    dest: /etc/profile.d/enable-rhmariadb102.sh
+    content: |
+      #!/bin/bash
+      source scl_source enable rh-mariadb102
+    mode: 0644
+
+- name: load rh-mariadb102 script
+  shell: source /etc/profile.d/enable-rhmariadb102.sh

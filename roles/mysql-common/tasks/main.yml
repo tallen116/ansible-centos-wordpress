@@ -1,0 +1,20 @@
+---
+
+- name: Install Software Collections
+  yum:
+    name: centos-release-scl
+    state: installed
+
+- name: Install MariaDB 10.2
+  yum:
+    name: rh-mariadb102
+    state: installed
+  notify:
+    - enable rh-mariadb102
+    - load rh-mariadb102 script
+
+- name: Enable MariaDB service
+  systemd:
+    name: rh-mariadb102-mariadb
+    state: started
+    enabled: yes
