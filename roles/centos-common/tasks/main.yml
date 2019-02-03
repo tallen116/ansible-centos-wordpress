@@ -40,11 +40,23 @@
   notify:
     - enable rh-php72
 
-- name: Install scl-mariadb102 (MariaDB 10.2)
+- name: Install MariaDB 10.2
   yum:
     name: rh-mariadb102
     state: installed
   notify:
     - enable rh-mariadb102
     - load rh-mariadb102 script
+
+- name: Enable MariaDB service
+  systemd:
+    name: rh-mariadb102-mariadb
+    state: started
+    enabled: yes
+
+- name: Enable PHP 7.2 FPM
+  systemd:
+    name: rh-php72-php-fpm
+    state: started
+    enabled: yes
 
