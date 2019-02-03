@@ -1,0 +1,16 @@
+- name: Install PHP 7.2 and modules
+  yum:
+    name: >
+      rh-php72, rh-php72-php-fpm, rh-php72-php-gd, rh-php72-php-json,
+      rh-php72-php-mbstring, rh-php72-php-mysqlnd,
+      rh-php72-php-xml, rh-php72-php-xmlrpc, rh-php72-php-opcache
+    state: installed
+  notify:
+    - enable rh-php72
+    - load rh-php72 script
+
+- name: Enable PHP 7.2 FPM
+  systemd:
+    name: rh-php72-php-fpm
+    state: started
+    enabled: yes
