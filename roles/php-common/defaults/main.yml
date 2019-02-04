@@ -1,2 +1,8 @@
 ---
 
+php_fpm_user: nginx
+php_fpm_group: nginx
+php_fpm_listen_address: /var/run/php-fpm/www.socket
+php_fpm_listen_owner: nginx
+php_fpm_listen_group: nginx
+php_root_path: /var/opt/rh/rh-php72
