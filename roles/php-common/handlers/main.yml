@@ -8,3 +8,8 @@
 
 - name: load rh-php72 script
   shell: source /etc/profile.d/enable-rhphp72.sh
+
+- name: Restart rh-php72-php-fpm
+  systemd:
+    name: rh-php72-php-fpm
+    state: restarted
