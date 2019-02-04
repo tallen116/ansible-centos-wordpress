@@ -3,4 +3,6 @@
 - hosts: all
   roles:
     - role: centos-common
+    - role: php-common
+    - role: mysql-common
 
