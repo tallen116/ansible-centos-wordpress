@@ -1,9 +1,9 @@
 ---
 
-- name: Set SELinux to Permissive
+- name: Set SELinux mode
   selinux:
-    policy: targeted
-    state: permissive
+    policy: "{{ centos_selinux_type }}"
+    state: "{{ centos_selinux_mode }}"
 
 - name: Install Epel Repository
   yum:

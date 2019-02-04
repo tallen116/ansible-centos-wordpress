@@ -1,0 +1,3 @@
+---
+centos_selinux_mode: enforcing
+centos_selinux_type: targeted
